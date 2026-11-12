@@ -6,7 +6,7 @@
     "years": [2017, 2018, 2019],
     "color": "Branca",
     "locations": ["Brasília - DF", "Entorno do DF", "Goiânia - GO"],
-    "max_price": 122000,
+    "max_price": 128000,
     "max_age_months": 3,
     "excluded_domains": ["olx.com.br"],
     "priority_sources": [
@@ -19,7 +19,7 @@
       "Veículo sinistrado ou recuperado",
       "Anúncios de peças, acessórios ou rodas",
       "Vídeos do YouTube ou TikTok sem anúncio de venda",
-      "Valores acima de R$ 122.000,00"
+      "Valores acima de R$ 128.000,00"
     ]
   },
   "search_queries": [
