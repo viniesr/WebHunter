@@ -33,8 +33,8 @@ class SearchReport(BaseModel):
     )
 
 
-def _fetch_web_results(queries: List[str], max_results_per_query: int = 10) -> List[dict]:
-    """Coleta resultados reais da web via Tavily Search API."""
+def _fetch_web_results(queries: List[str], max_results_per_query: int = 7) -> List[dict]:
+    """Coleta resultados reais da web via Tavily Search API focando em lojas e concessionárias."""
     tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
     raw_results = []
     seen_urls = set()
@@ -45,8 +45,14 @@ def _fetch_web_results(queries: List[str], max_results_per_query: int = 10) -> L
             response = tavily.search(
                 query=query,
                 search_depth="basic",
-                max_results=7,
-                exclude_domains=["olx.com.br"],
+                max_results=max_results_per_query,
+                exclude_domains=[
+                    "olx.com.br",
+                    "webmotors.com.br",
+                    "icarros.com.br",
+                    "mercadolivre.com.br",
+                    "mobiauto.com.br",
+                ],
             )
             for item in response.get("results", []):
                 url = item.get("url", "")
@@ -62,22 +68,24 @@ def _fetch_web_results(queries: List[str], max_results_per_query: int = 10) -> L
 
     return raw_results
 
+
 def _get_available_models(client: genai.Client) -> List[str]:
-    """Consulta na API os modelos ativos e disponíveis para a chave atual."""
+    """Consulta na API os modelos de texto ativos (série 3+) para a chave atual."""
     available = []
     try:
         for m in client.models.list():
             name = m.name.replace("models/", "")
             methods = getattr(m, "supported_actions", []) or []
-            if "generateContent" in methods and "gemini" in name.lower():
+            if (
+                "generateContent" in methods
+                and "gemini-3" in name.lower()
+                and "image" not in name.lower()
+            ):
                 available.append(name)
     except Exception as e:
         logging.warning("Não foi possível listar modelos dinamicamente: %s", e)
 
-    # Prioriza modelos Flash/Pro mais rápidos primeiro
-    preferred = [m for m in available if "flash" in m or "pro" in m]
-    return preferred if preferred else ["gemini-3.8-flash"]
-
+    return available if available else ["gemini-3.1-flash-lite", "gemini-3.8-flash"]
 def search_and_filter_listings(config: dict) -> List[CarListing]:
     """Busca anúncios na web e usa o Gemini (Free Tier) para filtrar e estruturar."""
     raw_results = _fetch_web_results(config["search_queries"])

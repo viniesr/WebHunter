@@ -22,10 +22,18 @@
       "Valores acima de R$ 128.000,00"
     ]
   },
+  "excluded_domains": [
+    "olx.com.br",
+    "webmotors.com.br",
+    "icarros.com.br",
+    "mercadolivre.com.br",
+    "mobiauto.com.br"
+  ],
   "search_queries": [
-    "Honda Civic EXL 2017 a 2019 branco Brasilia venda",
-    "Honda Civic Touring 2017 a 2019 branco Goiania venda",
-    "Honda Civic EXL branco DF Goias OLX Webmotors",
-    "vende-se Honda Civic Touring branco 2018 Brasilia"
+    "Honda Civic EXL OR Touring 2017 2018 2019 branco Orca OR Slaviero OR Jorlan OR Pedragon OR Smaff OR Saga",
+    "Honda Civic EXL OR Touring 2017 2018 2019 branco Autohaus OR Plaza Motors OR Sarvel OR Bali OR Brasal OR Tecar",
+    "Honda Civic EXL OR Touring 2017 2018 2019 branco Taguauto OR Champion OR Disbrave OR Premier OR Podium OR Prime",
+    "Honda Civic EXL OR Touring 2017 2018 2019 branco estoque seminovos Cidade do Automovel OR SIA Brasilia DF",
+    "site:instagram.com Honda Civic EXL OR Touring branco Brasilia OR DF seminovos OR multimarcas"
   ]
 }
