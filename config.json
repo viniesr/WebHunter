@@ -1,0 +1,30 @@
+{
+  "project_name": "WebHunter - Monitoramento Automotivo",
+  "target": {
+    "vehicle": "Honda Civic G10",
+    "versions": ["EXL", "Touring"],
+    "years": [2017, 2018, 2019],
+    "color": "Branca",
+    "locations": ["Brasília - DF", "Entorno do DF", "Goiânia - GO"],
+    "max_price": 122000,
+    "max_age_months": 3,
+    "excluded_domains": ["olx.com.br"],
+    "priority_sources": [
+      "Instagram de lojas e revendas locais",
+      "Facebook Marketplace",
+      "Sites próprios de agências de veículos"
+    ],
+    "rejection_criteria": [
+      "Passagem por leilão",
+      "Veículo sinistrado ou recuperado",
+      "Anúncios de peças, acessórios ou rodas",
+      "Vídeos do YouTube ou TikTok sem anúncio de venda",
+      "Valores acima de R$ 122.000,00"
+    ]
+  },
+  "search_queries": [
+    "site:instagram.com \"Civic\" (\"EXL\" OR \"Touring\") (\"2017\" OR \"2018\" OR \"2019\") \"Branco\" (\"Brasília\" OR \"DF\" OR \"Goiânia\") venda",
+    "site:facebook.com/marketplace \"Civic\" (\"EXL\" OR \"Touring\") (\"2017\" OR \"2018\" OR \"2019\") \"Branco\" (\"Brasília\" OR \"Goiânia\")",
+    "\"Honda Civic\" (\"EXL\" OR \"Touring\") (\"2017\" OR \"2018\" OR \"2019\") \"Branco\" (\"Brasília\" OR \"Goiânia\") preço -site:olx.com.br"
+  ]
+}
